@@ -1,0 +1,639 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('./assets/fonts/Inter-VariableFont_slnt\,wght.ttf');
+}
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Prevent font size inflation */
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+/* Remove default margin in favour of better control in authored CSS */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin-block-end: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Balance text wrapping on headings */
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  /* max-width: 100%; */
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+}
+
+.input-container,
+#unitSelection label {
+  cursor: pointer;
+}
+
+/* CUSTOM PROPERTIES */
+:root {
+  /* PAGE DIMENSIONS */
+  --p-page-inline-mob: 1.5rem;
+  --p-page-inline-tablet: 2.5rem;
+  --p-page-inline-desk: 8.75rem;
+
+  /* COLOURS */
+  --clr-gunmetal: #253347;
+  --clr-darkElectricBlue: #5e6e85;
+  --clr-blue: #345ff6;
+  --clr-pureWhite: #ffffff;
+  --clr-gradient1: #d6e6fe;
+  --clr-gradient2: rgba(214, 252, 254, 0);
+
+  /* FONT FAMILY */
+  --ff-body: 'Inter';
+
+  /* FONT SIZES */
+  --fs-headingXl: 4rem; /* 64px */
+  --fs-headingL: 3rem; /* 48px */
+  --fs-headingSupCont: 2rem; /* 32px */
+  --fs-headingM: 1.5rem; /* 24px */
+  --fs-headingS: 1.25rem; /* 20px */
+  --fs-bodyM: 1rem; /* 16px */
+  --fs-bodyS: 0.875rem; /* 14px */
+
+  /* FONT WEIGHT */
+  --fw-semibold: 600;
+  --fw-regular: 400;
+
+  /* LINE HEIGHT */
+  --lh-150: 150%;
+  --lh-121: 121%;
+  --lh-110: 110%;
+
+  /* LETTER SPACING */
+  --ls-heading: -0.05em;
+
+  /* MARGIN */
+  --mt-section-mob: 4.5rem;
+  --mt-section-desk: 6rem;
+
+  /* PADDING */
+  --p-card-mob: 1.5rem; /* 24px */
+  --p-card-desk: 2rem; /* 32px */
+
+  /* BORDER RADIUS */
+  --br-input: 0.75rem;
+  --br-card: 1rem;
+  --br-resultsDesk: 1rem 7rem 7rem 1rem;
+
+  /* BOX SHADOW CARD */
+  --bs-card: 1rem 2rem 3.5rem 0 rgba(143, 174, 207, 25%);
+}
+
+/* ///////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////// */
+
+/* ~ ~ ~ ~ ~ ~ ~ ~ ~ ~  UTILITY CLASSES ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.relative {
+  position: relative;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.pagePaddingTop {
+  padding-top: 2rem;
+}
+
+.pagePadding,
+.pagePaddingResultsDescription {
+  padding-inline: var(--p-page-inline-mob);
+}
+
+@media (min-width: 640px) {
+  .pagePadding,
+  .pagePaddingResultsDescriptionContainer {
+    padding-inline: var(--p-page-inline-tablet);
+  }
+
+  .pagePaddingResultsDescription {
+    padding-inline: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .pagePadding {
+    padding-inline: var(--p-page-inline-desk);
+  }
+
+  .pagePaddingTop {
+    padding-top: 4.75rem;
+  }
+}
+
+@media (width > 1440px) {
+  .pageWidth {
+    max-width: calc(72.5rem + (var(--p-page-inline-desk) * 2));
+    margin-inline: auto;
+  }
+}
+
+/* ///////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////// */
+
+/* ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ FONT STYLING ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ */
+body {
+  font-family: var(--ff-body);
+  color: var(--clr-darkElectricBlue);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--clr-gunmetal);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-heading);
+}
+
+h2,
+.resultWelcome {
+  font-size: var(--fs-headingM);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-121);
+}
+
+.sectionHeading {
+  font-size: var(--fs-headingSupCont);
+}
+
+h3 {
+  font-size: var(--fs-headingM);
+  line-height: var(--lh-121);
+}
+
+h4 {
+  font-size: var(--fs-headingS);
+  line-height: var(--lh-121);
+}
+
+p {
+  font-size: var(--fs-bodyM);
+  line-height: var(--lh-150);
+}
+
+#unitSelection {
+  color: var(--clr-gunmetal);
+  font-size: var(--fs-bodyM);
+  font-weight: var(--fw-semibold);
+}
+
+#resultsSection {
+  color: var(--clr-pureWhite);
+}
+
+.resultsDescription,
+.form-group label {
+  font-size: var(--fs-bodyS);
+  line-height: var(--lh-150);
+}
+
+#idealWeightRange {
+  font-weight: var(--fw-semibold);
+}
+
+h1,
+#BMIResult {
+  font-size: var(--fs-headingL);
+  line-height: var(--lh-110);
+}
+
+#BMIResult {
+  font-weight: var(--fw-semibold);
+}
+
+#BMICalculator input,
+.inputUnit {
+  font-size: var(--fs-headingM);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-121);
+}
+
+#BMICalculator input {
+  color: var(--clr-gunmetal);
+}
+
+.inputUnit {
+  color: var(--clr-blue);
+}
+
+@media (min-width: 640px) {
+  #BMIResult {
+    font-size: var(--fs-headingXl);
+  }
+}
+
+/* ///////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////// */
+
+/* ~ ~ ~ ~ ~ ~ ~ ~ ~ BACKGROUND PATTERNS ~ ~ ~ ~ ~ ~ ~ ~ ~ */
+.backgroundPattern {
+  width: 100%;
+  max-width: 61.125rem;
+  height: 40rem;
+  background: linear-gradient(
+    290.1deg,
+    #d6e6fe 0%,
+    rgba(214, 252, 254, 0) 100%
+  );
+  border-radius: 0 0 35px 35px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -10;
+}
+
+.advice-section {
+  position: relative;
+
+  .advice-section-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(
+      290.1deg,
+      #d6e6fe 0%,
+      rgba(214, 252, 254, 0) 100%
+    );
+    opacity: 0.25;
+  }
+}
+
+@media (min-width: 1440px) {
+  .backgroundPattern {
+    height: 46.0625rem;
+    left: 1.5rem;
+  }
+}
+
+/* ///////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////// */
+
+/* ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ PAGE SPACING ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ */
+
+.supporting-content section {
+  margin-top: var(--mt-section-mob);
+}
+
+@media (min-width: 640px) {
+  .supporting-content section {
+    margin-top: var(--mt-section-desk);
+  }
+}
+
+/* ///////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////// */
+
+/* ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ FORM STYLING ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ */
+/* FORM GENERAL STYLING */
+.calculator-styles {
+  --gap-mob-y: 0.5rem;
+  --gap-mob-x: 1.5rem;
+  --gap-desk: 2rem;
+
+  --gap-form-mob: 1rem;
+  --gap-form-desk: 1.5rem;
+
+  max-width: 45rem;
+  margin-inline: auto;
+  background-color: var(--clr-pureWhite);
+  padding: var(--p-card-mob);
+  border-radius: var(--br-card);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-mob-x);
+  box-shadow: var(--bs-card);
+
+  #BMICalculator {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-mob-x);
+  }
+}
+
+#unitSelection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-mob-y) var(--gap-mob-x);
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 1.125rem;
+  }
+}
+
+#metric-form,
+#imperial-form {
+  display: grid;
+  gap: var(--gap-form-mob);
+}
+
+#imperial-form {
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+}
+
+@media (max-width: 340px) {
+  #unitSelection {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 640px) {
+  #metric-form {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #metric-form,
+  #imperial-form {
+    gap: var(--gap-form-desk);
+  }
+}
+
+@media (min-width: 1024px) {
+  .calculator-styles {
+    max-width: 35.25rem;
+  }
+}
+
+/* FORM CUSTOM INPUT FIELDS */
+.input-container {
+  --p-input-x-mob: 1rem;
+  --p-input-x-desk: 1.5rem;
+  --p-input-y: 1.25rem;
+
+  margin-top: 0.5rem;
+  width: 100%;
+  border: 1px solid var(--clr-darkElectricBlue);
+  border-radius: var(--br-input);
+  overflow: hidden;
+  display: flex;
+
+  input[type='text'] {
+    border: none;
+    outline: none;
+  }
+
+  input {
+    width: 100%;
+    padding-block: var(--p-input-y);
+    padding-left: var(--p-input-x-desk);
+    cursor: inherit;
+  }
+
+  .inputUnit {
+    padding-block: var(--p-input-y);
+    padding-right: var(--p-input-x-desk);
+  }
+}
+
+#resultsSection {
+  background-color: var(--clr-blue);
+  padding: var(--p-card-desk);
+  border-radius: var(--br-card);
+}
+
+.emptyResultsP {
+  margin-top: 1rem;
+}
+
+#completedResults {
+  display: grid;
+  gap: var(--gap-mob-x);
+}
+
+#BMIResult {
+  margin-top: 0.5rem;
+}
+
+.input-container:hover,
+.input-container:focus-within {
+  border: 1px solid var(--clr-blue);
+}
+
+@media (max-width: 340px) {
+  .input-container {
+    input {
+      padding-left: var(--p-input-x-mob);
+    }
+
+    .inputUnit {
+      padding-right: var(--p-input-x-mob);
+    }
+  }
+}
+
+@media (min-width: 640px) {
+  .calculator-styles {
+    padding: var(--p-card-desk);
+    gap: var(--gap-desk);
+
+    #BMICalculator {
+      gap: var(--gap-desk);
+    }
+  }
+
+  #resultsSection {
+    border-radius: var(--br-resultsDesk);
+  }
+
+  #completedResults {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+}
+
+/* UNIT SELECTION FORM STYLING */
+/* CUSTOM RADIO BUTTONS */
+#unitSelection input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+#unitSelection label:hover .unchecked circle,
+#unitSelection label:focus .unchecked circle {
+  stroke: var(--clr-blue);
+}
+
+#unitSelection label:has(:not(input:checked)) .checked {
+  display: none;
+}
+
+#unitSelection label:has(:not(input:checked)) .unchecked {
+  display: block;
+}
+
+#unitSelection label:has(input:checked) .unchecked {
+  display: none;
+}
+
+#unitSelection label:has(input:checked) .checked {
+  display: block;
+}
+
+/* HIDE RELEVANT FORM UNIT SECTION */
+.calculatorContainer:has(input[id='metric']:checked) #imperial-form {
+  display: none !important;
+}
+
+.calculatorContainer:has(input[id='imperial']:checked) #metric-form {
+  display: none !important;
+}
+
+/* ///////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////// */
+
+/* ~ ~ ~ ~ ~ ~ ~ ~ ~ PAGE SECTION STYLING ~ ~ ~ ~ ~ ~ ~ ~ ~ */
+/* CALCULATOR SECTION */
+.opening-description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.opening-description img {
+  width: 40px;
+}
+
+.opening-description h1 {
+  margin-top: 1.5rem;
+}
+
+.opening-description p {
+  margin-top: 1.5rem;
+}
+
+.calculatorContainer {
+  margin-top: 3rem;
+}
+
+@media (min-width: 640px) {
+  .opening-description h1 {
+    margin-top: 2.5rem;
+    max-width: 30rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .opening-description img {
+    width: 64px;
+  }
+}
+
+/* ///////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////////////////////// */
+
+/* NEED TO WORK ON THIS BIT HERE!!! GRID BUT WITH PICTURE HANGING OFF PAGE?! */
+
+/* BMI RESULT DESCRIPTION */
+.BMIResultDescription {
+  --img-max-w: 27.1875rem;
+
+  h2 {
+    margin-top: 3rem;
+  }
+
+  p {
+    margin-top: 2rem;
+  }
+
+  img {
+    width: 100%;
+    max-width: var(--img-max-w);
+    margin-inline: auto;
+  }
+}
+
+@media (min-width: 640px) {
+  .BMIResultDescription {
+    /* position: relative; */
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    border: 1px solid red;
+
+    img {
+      /* position: absolute; */
+      /* left: -5rem; */
+      /* width: var(--img-max-w); */
+    }
+  }
+}

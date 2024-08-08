@@ -16,13 +16,15 @@
     <title>Frontend Mentor | Body Mass Index Calculator</title>
   </head>
   <body>
-    <main>
+    <main class="pageWidth relative">
       <div class="backgroundPattern"></div>
 
       <!-- CALCULATOR SECTION -->
-      <section class="calculator-section pagePadding">
+      <section class="calculator-section pagePadding pagePaddingTop">
         <div class="opening-description">
-          <img src="./assets/images/logo.svg" alt="" />
+          <div>
+            <img src="./assets/images/logo.svg" alt="" />
+          </div>
           <h1>Body Mass Index Calculator</h1>
           <p>
             Better understand your weight in relation to your height using our
@@ -222,16 +224,27 @@
 
               <!-- RESULTS -->
               <div id="resultsSection">
-                <div>
-                  <p>Your BMI is...</p>
-                  <p id="BMIResult">22</p>
+                <!-- EMPTY RESULTS DECLARATION -->
+                <div id="emptyResults" class="hidden">
+                  <p class="resultWelcome">Welcome!</p>
+                  <p class="emptyResultsP">
+                    Enter your height and weight and you'll see your BMI result
+                    here
+                  </p>
                 </div>
-                <p class="resultsDescription">
-                  Your BMI suggests you're
-                  <span id="weightDescription">a healthy weight</span>. Your
-                  ideal weight is between
-                  <span id="idealWeightRange">9st 6lbs - 12st 10lbs</span>.
-                </p>
+                <!-- COMPLETED RESULTS DECLARATION -->
+                <div id="completedResults" class="">
+                  <div>
+                    <p>Your BMI is...</p>
+                    <p id="BMIResult">22</p>
+                  </div>
+                  <p class="resultsDescription">
+                    Your BMI suggests you're
+                    <span id="weightDescription">a healthy weight</span>. Your
+                    ideal weight is between
+                    <span id="idealWeightRange">9st 6lbs - 12st 10lbs</span>.
+                  </p>
+                </div>
               </div>
             </form>
           </div>
@@ -240,9 +253,11 @@
 
       <section class="supporting-content">
         <!-- BMI RESULT DESCRIPTION -->
-        <section class="BMIResultDescription">
+        <section
+          class="BMIResultDescription pagePaddingResultsDescriptionContainer"
+        >
           <img src="./assets/images/image-man-eating.webp" alt="" />
-          <div class="pagePadding">
+          <div class="pagePaddingResultsDescription">
             <h2 class="sectionHeading">What your BMI result means</h2>
             <p>
               A BMI range of 18.5 to 24.9 is considered a 'healthy weight.'
